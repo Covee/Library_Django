@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.urls import reverse
 
 #class MyModelName(models.Model):
 	# my_field_name = models.CharField(max_length=20, help_text="Enter field documentation")
@@ -33,6 +34,10 @@ class Book(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('book-detail', args=[str(self.id)])
+
+	def display_genre(self):
+		return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
+	display_genre.short_description = 'Genre'
 
 
 class BookInstance(models.Model):
