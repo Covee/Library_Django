@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+	<h1>수정할 도서: {{ bookinst.book.title }}</h1>
+	<p>대여한 사람: {{ bookinst.borrower }}</p>
+	<p{% if bookinst.is_overdue %} text-danger {% endif %}> 반납 날짜: {{ bookinst.due_back }}</p>
+
+	<form action="" method="post">{% csrf_token %}
+		<table>
+			{{ form }}
+		</table>
+		<input type="submit" value="연장" />
+	</form>	
+
+{% endblock %}

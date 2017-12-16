@@ -39,7 +39,11 @@
 				   <ul class="sidebar-nav">
 				   <li>Staff</li>
 				   {% if perms.catalog.can_mark_returned %}
+				   {% for %}
 				   <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+				   <li><a href="{% url 'author-create' %}">작가 등록</a></li>
+				   <li><a href="#">작가 수정</a></li>
+				   <li><a href="{% url 'author-delete %}">작가 삭제</a></li>
 				   {% endif %}
 				   </ul>
 				{% endif %}

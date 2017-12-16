@@ -16,7 +16,7 @@
           {{ bookinst.borrower }}
         {% endif %}
         {% if perms.catalog.can_mark_returned %}-
-          <a href="#">반납 완료</a>
+          <a href="{% url 'renew-book-librarian' bookinst.id %}">반납기한 수정</a>
         {% endif %}
       </li>
       {% endfor %}

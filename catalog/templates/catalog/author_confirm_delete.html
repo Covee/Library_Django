@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>작가 삭제</h1>
+
+<p>정말 작가 {{author}}를(을) 지우시겠습니까?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="레알 삭제할꺼임" />
+</form>
+
+{% endblock %}
