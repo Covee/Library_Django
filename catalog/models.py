@@ -72,7 +72,6 @@ class BookInstance(models.Model):
 		return False
 
 
-
 class Author(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
@@ -81,6 +80,9 @@ class Author(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('author-detail', args=[str(self.id)])
+
+	# def get_absolute_url(self):
+	# 	return reverse('author-detail', kwargs={'pk':self.id})
 
 	def __str__(self):
 		return '%s, %s' % (self.last_name, self.first_name)

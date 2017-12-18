@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Author
+from .models import Author    
 
 
 def index(request):
@@ -68,7 +68,7 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 import datetime
 
 from .forms import RenewBookForm
@@ -93,22 +93,33 @@ def renew_book_librarian(request, pk):
 
 
 
-
-
-class AuthorCreate(CreateView):
+class AuthorCreate(PermissionRequiredMixin, CreateView):
 	model = Author
 	fields = '__all__'
 	initial = {'date_of_death':'12/10/2016',}
-	# template_name = 'author_form.html'
+	permission_required = ('catalog.create_author')
+
+	# def get_context_data(self, **kwargs):
+	# 	context = super(AuthorCreate, self).get_context_data(**kwargs)
+	# 	context['action'] = reverse('author-create')
+
+	# 	return context
 
 
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(PermissionRequiredMixin, UpdateView):
 	model = Author
 	fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-	# template_name = 'author_form.html'
+	permission_required = ('catalog.update_author')
+	
 
-class AuthorDelete(DeleteView):
+	# def get_context_data(self, **kwargs):
+	# 	context = super(AuthorUpdate,self).get_context_data(**kwargs)
+	# 	context['action'] = reverse('author-update', kwargs={'pk':self.get_object().id})
+	# 	return context
+
+
+class AuthorDelete(PermissionRequiredMixin, DeleteView):
 	model = Author
 	success_url = reverse_lazy('authors')
-	# template_name = 'author_confirm_delete.html'
+	permission_required = ('catalog.delete_author')
 

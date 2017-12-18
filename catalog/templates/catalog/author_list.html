@@ -7,15 +7,21 @@
 		<ul>
 			{% for author in author_list %}
 			<li>
-				<a href="{{ author.get_absolute_url }}">
-					{{ author.last_name }} {{ author.first_name }} ({{ author.date_of_birth }} ~
+				<strong><a href="{{ author.get_absolute_url }}">
+					{{ author.last_name }} {{ author.first_name }}</a></strong> ({{ author.date_of_birth }} ~
 					{% if author.date_of_death != None %}
-					{{ author.date_of_death }}
-					{% endif %})
-				</a>
+					{{ author.date_of_death }} 
+					{% endif %})&ensp;&ensp;&ensp;
+
+				{% if perms.catalog.create_author and perms.catalog.delete_author %}
+                    ▶ <a href="{% url 'author-update' author.pk %}">작가 수정</a>&ensp;&ensp;
+                    ▶ <a class="text-danger" href="{% url 'author-delete' author.pk %}">작가 삭제</a>
+                {% endif %}
+            </li>
 			{% endfor %}
 		</ul>
 	{% else %}
 		<p>등록된 작가가 없습니다.</p>
 	{% endif %}
+	<a class="btn btn-success" href="{% url 'author-create' %}">작가 등록</a>
 {% endblock %}
