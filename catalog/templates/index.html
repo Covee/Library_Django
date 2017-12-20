@@ -1,12 +1,16 @@
 {% extends "base_generic.html" %}
 
+
 {% block content %}
+
 <h1>코비의 꿈꾸는 도서관</h1>
-<p><em>LocalLibrary</em>에 오신것을 환영합니다. </p>
+<p>환영한다 친구들 :P</p>
+{% load staticfiles %}
+<img src="{% static 'HI.gif' %}"/>
 
-<h2>Dynamic Content</h2>
+<h2>도서관 현황</h2>
 
-	<p>도서관 현황</p>
+	<!-- <p>도서관 현황</p> -->
 	<ul>
 		<li><strong>책:</strong>{{ num_books }}</li>
 		<li><strong>보유중:</strong>{{ num_instances }}</li>

@@ -7,8 +7,8 @@
 		<ul>
 			{% for author in author_list %}
 			<li>
-				<strong><a href="{{ author.get_absolute_url }}">
-					{{ author.last_name }} {{ author.first_name }}</a></strong> ({{ author.date_of_birth }} ~
+				<h4><strong><a href="{{ author.get_absolute_url }}">
+					{{ author.last_name }} {{ author.first_name }}</a></strong></h4> ({{ author.date_of_birth }} ~
 					{% if author.date_of_death != None %}
 					{{ author.date_of_death }} 
 					{% endif %})&ensp;&ensp;&ensp;

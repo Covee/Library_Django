@@ -37,6 +37,7 @@ class BookDetailView(generic.DetailView):
 	model = Book
 
 
+# 이 ListView를 넣어주면서, perms를 쓰기 위해 html에서 {% author_list %} 로 가져다 쓸 수 있음
 class AuthorListView(generic.ListView):
 	model = Author
 
@@ -96,7 +97,7 @@ def renew_book_librarian(request, pk):
 class AuthorCreate(PermissionRequiredMixin, CreateView):
 	model = Author
 	fields = '__all__'
-	initial = {'date_of_death':'12/10/2016',}
+	# initial = {'date_of_death':'12/10/2016',}
 	permission_required = ('catalog.create_author')
 
 	# def get_context_data(self, **kwargs):
