@@ -3,19 +3,21 @@
 
 {% block content %}
 
-<h1>코비의 꿈꾸는 도서관</h1>
-<p>환영한다 친구들 :P</p>
+<h1 class="cover-heading">코비의 꿈꾸는 도서관</h1>
+<p class="lead">환영한다 친구들 :P</p>
 {% load staticfiles %}
 <img src="{% static 'HI.gif' %}"/>
 
 <h2>도서관 현황</h2>
-
-	<!-- <p>도서관 현황</p> -->
-	<ul>
-		<li><strong>책:</strong>{{ num_books }}</li>
-		<li><strong>보유중:</strong>{{ num_instances }}</li>
-		<li><strong>대여 가능:</strong>{{ num_instances_available }}</li>
-		<li><strong>작가:</strong>{{ num_authors }}</li>
-	</ul>
+	<span><strong>책: </strong>{{ num_books }}</span>&emsp;
+	<span><strong>보유중: </strong>{{ num_instances }}</span>&emsp;
+	<span><strong>대여 가능: </strong>{{ num_instances_available }}</span>&emsp;
+	<span><strong>작가: </strong>{{ num_authors }}</span>&emsp;
+	<p></p>
+	<p class="lead">
+		<a href="{% url 'books' %}" class="btn btn-lg btn-default">도서 리스트</a>
+	</p>
 
 {% endblock %}
+
+					
